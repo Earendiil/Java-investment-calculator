@@ -1,6 +1,7 @@
 package calculator;
 
 public class InvestmentCalculator {
+	
     public static void main(String[] args) {
         double startingInvestment = 5000; 
         double monthlyInvestment = 2000; 
