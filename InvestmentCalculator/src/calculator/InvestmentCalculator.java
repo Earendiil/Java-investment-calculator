@@ -17,7 +17,7 @@ public class InvestmentCalculator {
 
         System.out.printf("You will reach your retirement goal of €%.2f in %d years and %d months.%n", retirementGoal, years, remainingMonths);
 
-        int[] yearsArray = {2, 5, 8, 10, 12, 15, 20, 25}; // Investment durations in years
+        int[] yearsArray = {2, 5, 8, 10,  15, 20, 25}; // Investment durations in years
         System.out.printf("%-10s %-20s %-20s %-20s %-20s%n", "Years", "Future Value (€)", "Total Invested (€)", "Starting Capital (€)", "Growth (€)");
         for (int year : yearsArray) {
             int n = year * 12; 
