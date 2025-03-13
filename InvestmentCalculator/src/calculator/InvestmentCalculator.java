@@ -6,11 +6,20 @@ public class InvestmentCalculator {
         double monthlyInvestment = 2000; 
         double annualRate = 0.10; 
         double monthlyRate = annualRate / 12; 
+        double retirementGoal = 200000;  
 
-        int[] years = {2, 5, 8, 10, 12, 15, 20, 25}; // Investment durations in years
+        
+        int monthsToReachGoal = calculateMonthsToReachGoal(startingInvestment, monthlyInvestment, monthlyRate, retirementGoal);
 
+        // Convert months to years and months
+        int years = monthsToReachGoal / 12;
+        int remainingMonths = monthsToReachGoal % 12;
+
+        System.out.printf("You will reach your retirement goal of €%.2f in %d years and %d months.%n", retirementGoal, years, remainingMonths);
+
+        int[] yearsArray = {2, 5, 8, 10, 12, 15, 20, 25}; // Investment durations in years
         System.out.printf("%-10s %-20s %-20s %-20s %-20s%n", "Years", "Future Value (€)", "Total Invested (€)", "Starting Capital (€)", "Growth (€)");
-        for (int year : years) {
+        for (int year : yearsArray) {
             int n = year * 12; 
             double futureValue = calculateFutureValue(startingInvestment, monthlyInvestment, monthlyRate, n);
             
@@ -21,10 +30,24 @@ public class InvestmentCalculator {
         }
     }
 
+    // Method to calculate the time it takes to reach the retirement goal
+    private static int calculateMonthsToReachGoal(double startingInvestment, double monthlyInvestment, double monthlyRate, double retirementGoal) {
+        double balance = startingInvestment;
+        int months = 0;
+
+        // Keep adding monthly investment and applying interest until balance reaches goal
+        while (balance < retirementGoal) {
+            balance += monthlyInvestment;  
+            balance *= (1 + monthlyRate);  
+            months++;
+        }
+
+        return months;
+    }
+
+    // Future Value formula for an annuity with initial capital
     private static double calculateFutureValue(double startingInvestment, double monthlyInvestment, double monthlyRate, int n) {
-        // Future Value formula for an annuity with initial capital
         return startingInvestment * Math.pow(1 + monthlyRate, n) +
                monthlyInvestment * ((Math.pow(1 + monthlyRate, n) - 1) / monthlyRate) * (1 + monthlyRate);
-   
     }
 }
