@@ -11,7 +11,7 @@ public class InvestmentCalculator {
         
         int monthsToReachGoal = calculateMonthsToReachGoal(startingInvestment, monthlyInvestment, monthlyRate, retirementTarget);
 
-        // Convert months to years and months
+        
         int years = monthsToReachGoal / 12;
         int remainingMonths = monthsToReachGoal % 12;
 
